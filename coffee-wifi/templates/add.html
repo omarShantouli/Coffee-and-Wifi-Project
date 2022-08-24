@@ -1,0 +1,38 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="static/css/styles.css">
+{% endblock %}
+
+{% block title %}Add A New Cafe{% endblock %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+      <!-- This is where your WTForm will go -->
+      <form  action="{{ url_for('add_cafe') }}" method="post">
+          {{ form.csrf_token }}
+          {{ wtf.form_field(form.cafe) }}
+          {{ wtf.form_field(form.location) }}
+          {{ wtf.form_field(form.open) }}
+          {{ wtf.form_field(form.close) }}
+          {{ wtf.form_field(form.coffee_rating) }}
+          {{ wtf.form_field(form.wifi_rating) }}
+          {{ wtf.form_field(form.power) }}
+          <button class="btn btn-outline-secondary" style="color: black;">Submit</button>
+
+      </form>
+
+	  <p class="space-above"><a href="{{ url_for('cafes') }}">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
